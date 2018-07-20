@@ -1,26 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo';
 import { MaterialCommunityIcons as TempIcon, Ionicons } from '@expo/vector-icons';
 
-class Weather extends Component {
-  render() {
-    return (
-      <LinearGradient style={style.container} colors={['#00C6FB', '#005BEA']}>
-        <View style={style.upper} >
-          <Ionicons name="ios-sunny-outline" size={144} color="white" />
-          <View style={style.upperInfomation} >
-            <Text style={style.temp}>55</Text>
-            <TempIcon name="temperature-celsius" size={34} color="white" />
-          </View>
+const Weather = ({ temperature }) => {
+  return (
+    <LinearGradient style={style.container} colors={['#00C6FB', '#005BEA']}>
+      <View style={style.upper} >
+        <Ionicons name="ios-sunny-outline" size={144} color="white" />
+        <View style={style.upperInfomation} >
+          <Text style={style.temp}>{temperature}</Text>
+          <TempIcon name="temperature-celsius" size={34} color="white" />
         </View>
-        <View style={style.lower} >
-          <Text>Blah blah</Text>
-        </View>
-      </LinearGradient>
-    );
-  }
-}
+      </View>
+      <View style={style.lower} >
+        <Text>Blah blah</Text>
+      </View>
+    </LinearGradient>
+  );
+};
 
 const style = StyleSheet.create({
   container: {
@@ -51,6 +49,6 @@ const style = StyleSheet.create({
   subTitle: {
     fontSize: 28,
   }
-})
+});
 
 export default Weather;
