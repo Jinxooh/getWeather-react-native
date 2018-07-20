@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo';
 import { MaterialCommunityIcons as TempIcon, Ionicons } from '@expo/vector-icons';
 
-const Weather = ({ temperature }) => {
+const Weather = ({ temperature, weather }) => {
   return (
     <LinearGradient style={style.container} colors={['#00C6FB', '#005BEA']}>
       <View style={style.upper} >
@@ -14,7 +14,7 @@ const Weather = ({ temperature }) => {
         </View>
       </View>
       <View style={style.lower} >
-        <Text>Blah blah</Text>
+        <Text>{weather.main}</Text>
       </View>
     </LinearGradient>
   );

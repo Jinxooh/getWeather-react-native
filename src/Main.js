@@ -12,6 +12,7 @@ export default class Main extends Component {
     isLoaded: false,
     error: false,
     temperature: 0,
+    weather: null,
   }
 
   async componentDidMount() {
@@ -54,16 +55,16 @@ export default class Main extends Component {
     const { main, weather } = result;
     this.setState({
       temperature: parseInt(main.temp - 273.15, 10), // K to C
-      weather,
+      weather: weather[0],
     })
   }
 
   render() {
-    const { isLoaded, fontLoaded, error, temperature } = this.state;
+    const { isLoaded, fontLoaded, error, temperature, weather } = this.state;
     return (
       fontLoaded ? <View style={styles.container}>
         <StatusBar hidden={true} />
-        { isLoaded ? <Weather temperature={temperature}/> : <Loading error={error} /> }
+        { isLoaded ? <Weather temperature={temperature} weather={weather}/> : <Loading error={error} /> }
       </View> : null
     );
   }
