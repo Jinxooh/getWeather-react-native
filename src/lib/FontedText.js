@@ -1,10 +1,17 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 
-const FontedText = (props) => {
+const FontedText = ({ style, ...props }) => {
+  const propsStyle = style ? StyleSheet.flatten(style) : {};
+  const styles = StyleSheet.create({
+    fontBase: {
+      fontFamily: 'dokdo',
+      ...propsStyle,
+    },
+  });
   return (
-    <Text style={{ fontFamily: 'dokdo' }} {...props}>
-      {props.children}
+    <Text {...props} style={styles.fontBase}>
+      {props.children} {style}
     </Text>
   );
 };
