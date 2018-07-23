@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, View, Text, ActivityIndicator } from 'react-native';
 import FontedText from 'lib/FontedText';
 import { LinearGradient } from 'expo';
+import AnimateText from 'lib/AnimateText';
 
 const Loading = ({ error }) => {
   return (
     <LinearGradient colors={['#FDF6AA', 'rgba(0,0,0,0.8)']} style={style.gradient} >
-      <Text style={style.mainTitle}>WEAHTER</Text>
+      <AnimateText style={style.mainTitle} >WEAHTER</AnimateText>
       { error ?
         <FontedText style={style.errorFont}>{error}</FontedText> :
         <React.Fragment>
