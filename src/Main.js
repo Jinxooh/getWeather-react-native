@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ActivityIndicator, StatusBar } from 'react-native';
+import { connect } from 'react-redux';
 import { Font } from 'expo';
 import { getWeather } from 'lib/getWeather';
 import Weather from 'components/Weather';
 import Loading from 'components/Loading';
 
-
-export default class Main extends Component {
+class Main extends Component {
   state = {
     fontLoaded: false,
     isLoaded: false,
@@ -42,10 +42,6 @@ export default class Main extends Component {
         })
       }
     );
-
-    // this.setState({
-    //   error: 'error occurs',
-    // })
   }
 
   getWeather = async (coords) => {
@@ -61,11 +57,13 @@ export default class Main extends Component {
 
   render() {
     const { isLoaded, fontLoaded, error, temperature, weather } = this.state;
+    const { animationLoading } = this.props;
     return (
-      fontLoaded ? <View style={styles.container}>
-        <StatusBar hidden={true} />
-        { isLoaded ? <Weather temperature={temperature} weather={weather}/> : <Loading error={error} /> }
-      </View> : null
+      fontLoaded ?
+        <View style={styles.container}>
+          <StatusBar hidden={true} />
+          { isLoaded && animationLoading ? <Weather temperature={temperature} weather={weather}/> : <Loading error={error} /> }
+        </View> : null
     );
   }
 }
@@ -76,3 +74,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
+
+
+export default connect(
+  ({ base }) => ({
+    animationLoading: base.loading,
+  }),
+  () => ({}),
+)(Main);
