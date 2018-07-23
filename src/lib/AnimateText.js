@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, Animated, Easing } from 'react-native';
+import { BaseActions } from 'store/actionCreators';
 
 class AnimateText extends Component {
   state = {
@@ -14,7 +15,7 @@ class AnimateText extends Component {
         this.state.fadeAnim,            // The animated value to drive
         {
           toValue: 1,                   // Animate to opacity: 1 (opaque)
-          duration: 700,              // Make it take a while
+          duration: 1000,              // Make it take a while
         }
       ),
       Animated.spring(this.state.animatedVal, {
@@ -23,7 +24,10 @@ class AnimateText extends Component {
         easing: Easing.inOut(Easing.ease),
         delay: 1200,
       }),
-    ]).start();
+    ]).start(() => {
+      BaseActions.animationDone();
+      console.log('animation done');
+    });
   }
 
   render() {

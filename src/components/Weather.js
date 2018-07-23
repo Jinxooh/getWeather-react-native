@@ -2,19 +2,20 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo';
 import { MaterialCommunityIcons as TempIcon, Ionicons } from '@expo/vector-icons';
+import FontedText from 'lib/FontedText';
 
 const Weather = ({ temperature, weather }) => {
   return (
     <LinearGradient style={style.container} colors={['#00C6FB', '#005BEA']}>
       <View style={style.upper} >
+        <Text style={style.mainTitle}>WEATHER</Text>
         <Ionicons name="ios-sunny-outline" size={144} color="white" />
         <View style={style.upperInfomation} >
-          <Text style={style.temp}>{temperature}</Text>
-          <TempIcon name="temperature-celsius" size={34} color="white" />
+          <Text style={style.temp}>{temperature} °C</Text>
         </View>
       </View>
       <View style={style.lower} >
-        <Text>{weather.main}</Text>
+        <FontedText style={style.subTitle}>{weather.main}</FontedText>
       </View>
     </LinearGradient>
   );
@@ -39,8 +40,12 @@ const style = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  mainTitle: {
+    fontFamily: 'bungee-shade',
+    fontSize: 50,
+  },
   temp: {
-    fontSize: 32,
+    fontSize: 52,
     color: 'white',
   },
   title: {
@@ -48,6 +53,7 @@ const style = StyleSheet.create({
   },
   subTitle: {
     fontSize: 28,
+    color: 'white',
   }
 });
 
